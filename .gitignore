@@ -20,7 +20,7 @@ Thumbs.db
 *.log
 
 # Python dependencies
-requirements.txt
+#requirements.txt
 
 # Uploads (se não quiser versionar arquivos enviados)
 static/uploads/
