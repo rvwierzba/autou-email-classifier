@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AutoU Classificador de Emails</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Classificador de Emails</h1>
+    <textarea id="textoEmail" placeholder="Cole o texto do email aqui..."></textarea>
+    <button onclick="processar()">Processar</button>
+    
+    <div id="resultado"></div>
+
+  <script>
+    async function processar() {
+      const texto = document.getElementById('textoEmail').value;
+      const res = await fetch('/processar', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({texto})
+      });
+      const data = await res.json();
+      document.getElementById('resultado').innerHTML =
+        `<p><strong>Categoria:</strong> ${data.categoria}</p>
+         <p><strong>Resposta sugerida:</strong> ${data.resposta}</p>`;
+    }
+  </script>
+
+
+</body>
+</html>
