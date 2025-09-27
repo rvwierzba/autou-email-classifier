@@ -17,7 +17,7 @@ Aplicação web que classifica emails como **Produtivos** ou **Improdutivos** e 
 
 ## 🌐 Como usar
 
-1. Acesse o frontend: [🔗 GitHub Pages](https://rvwierzba.github.io/autou-email-classifier/)
+1. Acesse o frontend: [🔗GitHub Pages](https://www.rvwtech.com.br/autou-email-classifier/)
 2. Cole ou envie o texto do email
 3. Clique em “Processar”
 4. Veja a classificação e a resposta sugerida
