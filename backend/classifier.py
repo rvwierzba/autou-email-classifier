@@ -1,5 +1,11 @@
+from transformers import pipeline
+
+# Carrega pipeline de classificação de texto
+classificador = pipeline("text-classification", model="distilbert-base-uncased-finetuned-sst-2-english")
+
 def classificar_email(texto):
-    # Simples heurística ou chamada à API de IA
-    if "reunião" in texto.lower() or "proposta" in texto.lower():
+    resultado = classificador(texto)[0]
+    if resultado['label'] == 'POSITIVE':
         return "Produtivo"
-    return "Improdutivo"
+    else:
+        return "Improdutivo"

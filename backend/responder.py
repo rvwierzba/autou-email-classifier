@@ -1,5 +1,8 @@
+from transformers import pipeline
+
+gerador = pipeline("text-generation", model="gpt2")
+
 def gerar_resposta(texto, categoria):
-    if categoria == "Produtivo":
-        return "Olá! Agradecemos seu contato. Vamos analisar sua proposta e retornaremos em breve."
-    else:
-        return "Obrigado pelo contato. Este canal é exclusivo para assuntos relacionados ao atendimento financeiro."
+    prompt = f"Email: {texto}\nCategoria: {categoria}\nResposta:"
+    resposta = gerador(prompt, max_length=100, num_return_sequences=1)[0]['generated_text']
+    return resposta.split("Resposta:")[-1].strip()
