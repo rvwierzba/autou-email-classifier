@@ -2,8 +2,4 @@ flask
 flask-cors
 transformers
 torch
-<<<<<<< HEAD
 sentencepiece
-=======
-sentencepiece
->>>>>>> 4b5e6115aa6709adbf0fc2e4a1a072cab864eb47
