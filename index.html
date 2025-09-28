@@ -16,7 +16,7 @@
   <script>
     async function processar() {
       const texto = document.getElementById('textoEmail').value;
-      const res = await fetch('https://autou-backend-fevm.onrender.com', {
+      const res = await fetch('https://autou-backend-fevm.onrender.com/processar', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ texto: textoDoEmail })
