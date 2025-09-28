@@ -16,11 +16,11 @@
   <script>
     async function processar() {
       const texto = document.getElementById('textoEmail').value;
-      const res = await fetch('/processar', {
-        method: 'POST',
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({texto})
-      });
+     const res = await fetch('https://autou-backend.onrender.com/processar', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({texto})
+    });
       const data = await res.json();
       document.getElementById('resultado').innerHTML =
         `<p><strong>Categoria:</strong> ${data.categoria}</p>
