@@ -16,10 +16,10 @@
   <script>
     async function processar() {
       const texto = document.getElementById('textoEmail').value;
-     const res = await fetch('https://autou-backend-fevm.onrender.com/processar', {
+      const res = fetch('https://autou-api.rvwtech.com.br/processar', {
       method: 'POST',
-      headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify({texto})
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ texto })
     });
       const data = await res.json();
       document.getElementById('resultado').innerHTML =
