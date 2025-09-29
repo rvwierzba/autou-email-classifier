@@ -42,38 +42,39 @@
     <p id="resposta"></p>
   </div>
 
-  <script>
-    async function processar() {
-      const texto = document.getElementById('texto').value.trim();
-      const resultadoDiv = document.getElementById('resultado');
-      const categoriaSpan = document.getElementById('categoria');
-      const respostaSpan = document.getElementById('resposta');
+<script>
+  async function processar() {
+    const texto = document.getElementById('texto').value.trim();
+    const resultadoDiv = document.getElementById('resultado');
+    const categoriaSpan = document.getElementById('categoria');
+    const respostaSpan = document.getElementById('resposta');
 
-      if (!texto) {
-        alert('Por favor, insira o texto do e-mail.');
-        return;
-      }
-
-      try {
-        const res = await fetch('https://autou-api.rvwtech.com.br/processar', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ texto })
-        });
-
-        if (!res.ok) {
-          throw new Error('Erro ao processar o e-mail.');
-        }
-
-        const data = await res.json();
-        categoriaSpan.textContent = data.categoria;
-        respostaSpan.textContent = data.resposta;
-        resultadoDiv.style.display = 'block';
-      } catch (error) {
-        alert('Falha na comunicação com o servidor: ' + error.message);
-        resultadoDiv.style.display = 'none';
-      }
+    if (!texto) {
+      alert('Por favor, insira o texto do e-mail.');
+      return;
     }
-  </script>
+
+    try {
+      const response = await fetch('https://autou-api.rvwtech.com.br/processar', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ texto })
+      });
+
+      if (!response.ok) {
+        throw new Error('Erro ao processar o e-mail.');
+      }
+
+      const data = await response.json(); // ← aqui está o fix
+
+      categoriaSpan.textContent = data.categoria;
+      respostaSpan.textContent = data.resposta;
+      resultadoDiv.style.display = 'block';
+    } catch (error) {
+      alert('Falha na comunicação com o servidor: ' + error.message);
+      resultadoDiv.style.display = 'none';
+    }
+  }
+</script>
 </body>
 </html>
