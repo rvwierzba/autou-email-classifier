@@ -1,33 +1,79 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AutoU Classificador de Emails</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Classificador de E-mails</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 40px;
+      background-color: #f5f5f5;
+    }
+    textarea {
+      width: 100%;
+      height: 150px;
+      padding: 10px;
+      font-size: 16px;
+    }
+    button {
+      margin-top: 10px;
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    .resultado {
+      margin-top: 20px;
+      padding: 15px;
+      background-color: #fff;
+      border: 1px solid #ccc;
+    }
+  </style>
 </head>
 <body>
-    <h1>Classificador de Emails</h1>
-    <textarea id="textoEmail" placeholder="Cole o texto do email aqui..."></textarea>
-    <button onclick="processar()">Processar</button>
-    
-    <div id="resultado"></div>
+  <h1>Classificador de E-mails</h1>
+  <textarea id="texto" placeholder="Cole o conteúdo do e-mail aqui..."></textarea>
+  <br />
+  <button onclick="processar()">Processar</button>
+
+  <div class="resultado" id="resultado" style="display: none;">
+    <p><strong>Categoria:</strong> <span id="categoria"></span></p>
+    <p><strong>Resposta sugerida:</strong></p>
+    <p id="resposta"></p>
+  </div>
 
   <script>
     async function processar() {
-      const texto = document.getElementById('textoEmail').value;
-      const res = fetch('https://autou-api.rvwtech.com.br/processar', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ texto })
-    });
-      const data = await res.json();
-      document.getElementById('resultado').innerHTML =
-        `<p><strong>Categoria:</strong> ${data.categoria}</p>
-         <p><strong>Resposta sugerida:</strong> ${data.resposta}</p>`;
+      const texto = document.getElementById('texto').value.trim();
+      const resultadoDiv = document.getElementById('resultado');
+      const categoriaSpan = document.getElementById('categoria');
+      const respostaSpan = document.getElementById('resposta');
+
+      if (!texto) {
+        alert('Por favor, insira o texto do e-mail.');
+        return;
+      }
+
+      try {
+        const res = await fetch('https://autou-api.rvwtech.com.br/processar', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ texto })
+        });
+
+        if (!res.ok) {
+          throw new Error('Erro ao processar o e-mail.');
+        }
+
+        const data = await res.json();
+        categoriaSpan.textContent = data.categoria;
+        respostaSpan.textContent = data.resposta;
+        resultadoDiv.style.display = 'block';
+      } catch (error) {
+        alert('Falha na comunicação com o servidor: ' + error.message);
+        resultadoDiv.style.display = 'none';
+      }
     }
   </script>
-
-
 </body>
 </html>
