@@ -7,10 +7,10 @@ import os
 # Caminho absoluto para a pasta frontend
 FRONTEND_FOLDER = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'frontend'))
 
-app = Flask(__name__, static_folder=FRONTEND_FOLDER)
+app = Flask(__name__, static_folder=FRONTEND_FOLDER, static_url_path='')
 CORS(app, resources={r"/processar": {"origins": "https://autou-api.rvwtech.com.br"}})
 
-# Serve o index.html na raiz
+# Serve index.html na raiz
 @app.route('/')
 def index():
     return send_from_directory(FRONTEND_FOLDER, 'index.html')
@@ -18,7 +18,11 @@ def index():
 # Serve arquivos estáticos (CSS, JS, etc.)
 @app.route('/<path:path>')
 def static_files(path):
-    return send_from_directory(FRONTEND_FOLDER, path)
+    file_path = os.path.join(FRONTEND_FOLDER, path)
+    if os.path.exists(file_path):
+        return send_from_directory(FRONTEND_FOLDER, path)
+    else:
+        return "Arquivo não encontrado", 404
 
 # Rota de processamento
 @app.route('/processar', methods=['POST'])
