@@ -1,15 +1,10 @@
 from flask import Flask, request, jsonify
-
 from flask_cors import CORS
-
-app = Flask(__name__)
-CORS(app, resources={r"/processar": {"origins": "https://www.rvwtech.com.br"}})
-
 from classifier import classificar_email
 from responder import gerar_resposta
 
 app = Flask(__name__)
-CORS(app)
+CORS(app, resources={r"/processar": {"origins": "https://www.rvwtech.com.br"}})
 
 @app.route('/processar', methods=['POST'])
 def processar():
