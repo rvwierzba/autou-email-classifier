@@ -27,14 +27,23 @@ def static_files(path):
 # Rota de processamento
 @app.route('/processar', methods=['POST'])
 def processar():
-    data = request.get_json()
-    texto = data.get('texto', '')
+    print("🔔 Requisição recebida em /processar")
 
+    data = request.get_json()
+    print("📨 Dados recebidos:", data)
+
+    texto = data.get('texto', '')
     if not texto.strip():
+        print("⚠️ Texto vazio")
         return jsonify({'erro': 'Texto vazio'}), 400
 
+    print("🔍 Classificando texto...")
     categoria = classificar_email(texto)
+    print("✅ Categoria:", categoria)
+
+    print("🧠 Gerando resposta...")
     resposta = gerar_resposta(texto, categoria)
+    print("✅ Resposta:", resposta)
 
     return jsonify({
         'categoria': categoria,
