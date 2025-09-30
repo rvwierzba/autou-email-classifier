@@ -3,6 +3,7 @@ from flask_cors import CORS
 from classifier import classificar_email
 from responder import gerar_resposta
 import os
+import json
 
 # Caminho absoluto para a pasta frontend
 FRONTEND_FOLDER = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'frontend'))
@@ -30,17 +31,16 @@ def processar():
     print("🔔 Requisição recebida em /processar")
 
     try:
-        raw_body = request.data.decode('utf-8')
-        print("📦 Corpo bruto recebido:", raw_body)
-
         data = request.get_json(force=True, silent=True)
-        print("📨 JSON interpretado:", data)
+        if data is None:
+            print("⚠️ get_json falhou, tentando get_data...")
+            raw = request.get_data(as_text=True)
+            print("📦 Corpo bruto recebido:", raw)
+            data = json.loads(raw)
+        else:
+            print("📨 JSON interpretado via get_json:", data)
     except Exception as e:
         print("❌ Erro ao decodificar JSON:", e)
-        return jsonify({'erro': 'JSON inválido'}), 400
-
-    if data is None:
-        print("❌ JSON não pôde ser interpretado")
         return jsonify({'erro': 'JSON inválido'}), 400
 
     texto = data.get('texto', '')
@@ -60,6 +60,8 @@ def processar():
         'categoria': categoria,
         'resposta': resposta
     })
+
+
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000, debug=False)
