@@ -30,8 +30,11 @@ def processar():
     print("🔔 Requisição recebida em /processar")
 
     try:
+        raw_body = request.data.decode('utf-8')
+        print("📦 Corpo bruto recebido:", raw_body)
+
         data = request.get_json(force=True, silent=True)
-        print("📨 Dados recebidos:", data)
+        print("📨 JSON interpretado:", data)
     except Exception as e:
         print("❌ Erro ao decodificar JSON:", e)
         return jsonify({'erro': 'JSON inválido'}), 400
