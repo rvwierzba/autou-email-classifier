@@ -28,7 +28,6 @@ def static_files(path):
 @app.route('/processar', methods=['POST'])
 def processar():
     print("🔔 Requisição recebida em /processar")
-
     data = request.get_json()
     print("📨 Dados recebidos:", data)
 
