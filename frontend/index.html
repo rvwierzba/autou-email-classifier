@@ -54,15 +54,16 @@
       return;
     }
 
-    const payload = { texto }; // ← garante que é um objeto JSON válido
+    const payload = JSON.stringify({ texto });
 
     try {
       const response = await fetch('/processar', {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
         },
-        body: JSON.stringify(payload) // ← garante que o corpo é JSON puro
+        body: payload
       });
 
       if (!response.ok) {
