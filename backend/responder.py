@@ -7,12 +7,12 @@ def gerar_resposta(texto, categoria):
         "text2text-generation",
         model="google/flan-t5-small",
         tokenizer="google/flan-t5-small",
-        device=-1  # usa CPU
+        device=-1  # força uso de CPU
     )
 
     resultado = gerador(
         prompt,
-        max_new_tokens=128,
+        max_new_tokens=64,
         do_sample=False
     )
 
