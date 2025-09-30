@@ -28,8 +28,13 @@ def static_files(path):
 @app.route('/processar', methods=['POST'])
 def processar():
     print("🔔 Requisição recebida em /processar")
-    data = request.get_json()
-    print("📨 Dados recebidos:", data)
+
+    try:
+        data = request.get_json(force=True)
+        print("📨 Dados recebidos:", data)
+    except Exception as e:
+        print("❌ Erro ao decodificar JSON:", e)
+        return jsonify({'erro': 'JSON inválido'}), 400
 
     texto = data.get('texto', '')
     if not texto.strip():
