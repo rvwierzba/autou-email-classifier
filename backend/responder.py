@@ -3,9 +3,9 @@ from transformers import pipeline
 # Carrega o modelo uma única vez
 gerador = pipeline(
     "text2text-generation",
-    model="google/flan-t5-small",
-    tokenizer="google/flan-t5-small",
-    device=-1  # força uso de CPU
+    model="google/flan-t5-xs",
+    tokenizer="google/flan-t5-xs",
+    device=-1
 )
 
 def gerar_resposta(texto, categoria):
