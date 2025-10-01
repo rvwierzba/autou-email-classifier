@@ -44,7 +44,7 @@ python backend/app.py
 
 
 🎥 Demonstração
-Video hospedado no meu canal do YouTube no [link](https://youtu.be/aWvsEIioIqE)
+Video hospedado no meu canal do YouTube no [link](https://youtu.be/hpJNZyIyFc8)
 
 ✨ Autor
 Rafael V. Wierzba
