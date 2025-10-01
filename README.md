@@ -40,9 +40,11 @@ python backend/app.py
 - Backend hospedado no Render
 - Frontend servido diretamente pela pasta frontend/
 - Integração contínua via GitHub
+- - ⚠️ Nota: o tempo de resposta pode variar devido ao cold start do Render (especialmente no plano gratuito). Após a primeira requisição, o sistema responde normalmente.
+
 
 🎥 Demonstração
-Em breve: vídeo com narração IA mostrando o fluxo completo.
+Video hospedado no meu canal do YouTube no [link](https://youtu.be/aWvsEIioIqE)
 
 ✨ Autor
 Rafael V. Wierzba
