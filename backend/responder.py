@@ -1,14 +1,15 @@
 from transformers import pipeline
 
+# Carrega o modelo uma única vez
+gerador = pipeline(
+    "text2text-generation",
+    model="google/flan-t5-small",
+    tokenizer="google/flan-t5-small",
+    device=-1  # força uso de CPU
+)
+
 def gerar_resposta(texto, categoria):
     prompt = f"Escreva uma resposta educada para o seguinte e-mail:\n\n{texto}\n\nCategoria: {categoria}"
-
-    gerador = pipeline(
-        "text2text-generation",
-        model="google/flan-t5-small",
-        tokenizer="google/flan-t5-small",
-        device=-1  # força uso de CPU
-    )
 
     resultado = gerador(
         prompt,
