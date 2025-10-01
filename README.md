@@ -46,7 +46,7 @@ Em breve: vídeo com narração IA mostrando o fluxo completo.
 
 ✨ Autor
 Rafael V. Wierzba
-Desenvolvedor e criador do projeto
+Desenvolvedor e criador do projeto.
 Piracaia, SP — Brasil
 
 📄 Licença
