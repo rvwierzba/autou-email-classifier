@@ -1,59 +1,54 @@
-# 🚀 AutoU - Classificador Inteligente de Emails
+# Autou Email Classifier ✉️🤖
 
-Aplicação web que classifica emails como **Produtivos** ou **Improdutivos** e sugere respostas automáticas usando IA.
+Classificador automático de e-mails com sugestão de resposta, usando IA leve e backend em Flask.
 
-## 🧠 Funcionalidades
+---
 
-- Upload ou colagem de texto de email
-- Classificação automática
-- Sugestão de resposta com linguagem profissional
-- Interface simples e intuitiva
+## 🚀 Funcionalidades
 
-## 🛠️ Tecnologias
+- Classificação de e-mails por categoria (Agendamento, Financeiro, Suporte, etc)
+- Geração de resposta educada com IA local via [Ollama](https://ollama.com/)
+- Frontend simples em HTML/JS
+- Backend leve com Flask + Flask-CORS
+- Deploy no [Render](https://render.com/) com integração GitHub
 
-- **Frontend:** HTML, CSS, JavaScript
-- **Backend:** Python + Flask
-- **IA:** Classificação e geração de texto com heurísticas ou modelos de linguagem
+---
 
-## 🌐 Como usar
+## 🧠 Tecnologias
 
-1. Acesse o frontend: [🔗GitHub Pages](https://www.rvwtech.com.br/autou-email-classifier/)
-2. Cole ou envie o texto do email
-3. Clique em “Processar”
-4. Veja a classificação e a resposta sugerida
+- Python 3.13  
+- Flask  
+- Ollama (`tinyllama`)  
+- Git + GitHub  
+- Render (Web Service)
 
-> ⚠️ O backend está hospedado em [Render](https://render.com) e pode levar alguns segundos para iniciar.
+---
 
-## 📦 Como rodar localmente
+## 🛠️ Como rodar localmente
 
 ```bash
-git clone https://github.com/rafaelgithubusername/autou-email-classifier.git
-cd backend
+git clone https://github.com/seu-usuario/autou-email-classifier.git
+cd autou-email-classifier
+python -m venv .venv
+.venv\Scripts\Activate.ps1  # Windows PowerShell
 pip install -r requirements.txt
-python app.py
+python backend/app.py 
 ```
+[Acesse aqui](https://autou-api.rvwtech.com.br)
 
-Acesse `http://localhost:5000` e conecte com o frontend.
+📦 Deploy
+- Backend hospedado no Render
+- Frontend servido diretamente pela pasta frontend/
+- Integração contínua via GitHub
 
-## 🎥 Demonstração
+🎥 Demonstração
+Em breve: vídeo com narração IA mostrando o fluxo completo.
 
-Assista ao vídeo explicativo: [📺 YouTube](https://youtube.com/seu-video)
+✨ Autor
+Rafael V. Wierzba
+Desenvolvedor e criador do projeto
+Piracaia, SP — Brasil
 
-## 📁 Estrutura do Projeto
+📄 Licença
+Este projeto está sob a licença MIT. Sinta-se livre para usar, modificar e compartilhar.
 
-```
-autou-email-classifier/
-├── backend/
-│   ├── app.py
-│   ├── classifier.py
-│   ├── responder.py
-│   └── requirements.txt
-├── frontend/
-│   ├── index.html
-│   └── style.css
-├── README.md
-```
-
-## 👨‍💻 Autor
-
-Feito com 💙 por Rafael para o desafio da AutoU.
